@@ -147,4 +147,85 @@
             desenhaBola(x, y, 'lightgrey', 35);
 
         }
+
+        pincel.fillStyle = "lightgrey";
+        pincel.fillRect(350, 0, 250, 300);
+        pincel.fillStroke = "black";
+        pincel.strokeRect(350, 0, 250, 300);
+        pincel.fill();
+
+        pincel.font = "12px Arial";
+        pincel.fillStyle = "blue";
+        pincel.fillText('O ' + primeiroJogador + ' jogou, ', 420, 20);
+        pincel.fillStyle = "red";
+        pincel.fillText('Agora é o turno do ' + segundoJogador, 420, 40);
+
+        jogo[linha][coluna] = 1;
+        circuloExecutado = true;
+        console.table(jogo);
+    }
+
+    var xisExecutado = false;
+
+    function desenhaXis(x, y) {
+        if (x <= 300 && y <= 300) {
+
+            coluna = parseInt(x / 100);
+            linha = parseInt(y / 100);
+
+            if (linha == 0) {
+                y = 80;
+                if (coluna == 0) {
+                    x = 20;
+                } else if (coluna == 1) {
+                    x = 120;
+                } else {
+                    x = 220
+                }
+            } else if (linha == 1) {
+                y = 180;
+                if (coluna == 0) {
+                    x = 20;
+                } else if (coluna == 1) {
+                    x = 120;
+                } else {
+                    x = 220;
+                }
+            } else {
+                y = 280;
+                if (coluna == 0) {
+                    x = 20;
+                } else if (coluna == 1) {
+                    x = 120;
+                } else {
+                    x = 220;
+                }
+            }
+
+            pincel.font = "80px Arial";
+            pincel.fillStyle = "red";
+            pincel.fillText('X', x, y);
+
+        }
+
+        pincel.fillStyle = "lightgrey";
+        pincel.fillRect(350, 0, 250, 300);
+        pincel.fillStroke = "black";
+        pincel.strokeRect(350, 0, 250, 300);
+        pincel.fill();
+
+        pincel.font = "12px Arial";
+        pincel.fillStyle = "red";
+        pincel.fillText('O ' + segundoJogador + ' jogou, ', 420, 20);
+        pincel.fillStyle = "blue";
+        pincel.fillText('Agora é o turno do ' + primeiroJogador, 420, 40);
+
+        jogo[linha][coluna] = 2;
+        xisExecutado = true;
+        console.table(jogo);
+    }
+
+    var qtdeVitoriasPrimeiroJog = 0;
+    var qtdeVitoriasSegundoJog = 0;
+
 </script>
