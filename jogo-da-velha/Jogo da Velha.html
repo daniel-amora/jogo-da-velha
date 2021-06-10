@@ -266,6 +266,50 @@
                         qtdeVitoriasPrimeiroJog = qtdeVitoriasPrimeiroJog + 1;
                     }
     */
+   criaJogo();
+    var turnoCirculo = true;
 
+    tela.onclick = function (evento) {
+
+        coluna = parseInt(x / 100);
+        linha = parseInt(y / 100);
+
+        var x = evento.pageX - tela.offsetLeft;
+        var y = evento.pageY - tela.offsetTop;
+
+
+        if (turnoCirculo) {
+            desenhaCirculo(x, y);
+            if(verificaJogada(jogo) == 1){
+                console.log('Circulo venceu');
+            }        
+            turnoCirculo = false;
+        } else {
+            desenhaXis(x, y);
+            if(verificaJogada(jogo) == 2) {
+                console.log('Xis venceu');
+            }         
+            turnoCirculo = true;
+        }
+        verificaPosicao(x, y);
+
+        console.log("posição do clique : " + x + ", " + y);
+
+        pincel.fillStyle = 'lightgrey';
+        pincel.fillRect(0, 320, 600, 80);
+        pincel.fillStroke = "black";
+        pincel.strokeRect(0, 320, 600, 80);
+
+        pincel.font = "12px Arial";
+        pincel.fillStyle = "black";
+        pincel.fillText('Placar: ', 20, 340);
+
+        pincel.font = "12px Arial";
+        pincel.fillStyle = "blue";
+        pincel.fillText('Vitorias de ' + primeiroJogador + ' : ' + qtdeVitoriasPrimeiroJog, 80, 340);
+        pincel.font = "12px Arial";
+        pincel.fillStyle = "red";
+        pincel.fillText('Vitorias de ' + segundoJogador + ' : ' + qtdeVitoriasSegundoJog, 80, 360);
+    };
 
 </script>
