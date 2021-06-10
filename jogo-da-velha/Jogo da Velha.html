@@ -17,3 +17,39 @@
 </body>
 
 </html>
+<script>
+    var primeiroJogador = prompt('Digite o nome do primeiro jogador');
+    var segundoJogador = prompt('Digite o nome do segundo jogador');
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    //fundo branco
+    pincel.fillStyle = 'white';
+    pincel.fillRect(0, 0, 600, 300);
+
+    pincel.fillStyle = 'lightgrey';
+    pincel.fillRect(0, 320, 600, 80);
+    pincel.fillStroke = "black";
+    pincel.strokeRect(0, 320, 600, 80);
+
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(350, 0, 250, 300);
+    pincel.fillStroke = "black";
+    pincel.strokeRect(350, 0, 250, 300);
+    pincel.fill();
+
+    pincel.font = "12px Arial";
+    pincel.fillStyle = "black";
+    pincel.fillText('Placar: ', 20, 340);
+
+    var jogo =
+        [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0],
+        ];
+
+    console.log(jogo);
+    console.table(jogo);
+</script>
