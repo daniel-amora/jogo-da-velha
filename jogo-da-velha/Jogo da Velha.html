@@ -228,4 +228,44 @@
     var qtdeVitoriasPrimeiroJog = 0;
     var qtdeVitoriasSegundoJog = 0;
 
+    function verificaJogada(matriz) {
+
+        for (var i = 0; i <= 2; i++) {
+            if (matriz[i][0] == matriz[i][1] && matriz[i][1] == matriz[i][2]) {
+                return matriz[i][0];
+                
+            }
+            if (matriz[0][i] == matriz[1][i] && matriz[1][i] == matriz[2][i]) { 
+                return matriz[i][1];
+                console.log(matriz)
+            }
+             if (matriz[0][i] == matriz[1][i] && matriz[1][i] == matriz[2][i]) { 
+                return matriz[i][2];
+                console.log(matriz)
+             }
+        }
+        return -1;
+    }
+
+
+    verificaJogada(jogo);
+
+    //function verificaJogada(jogo) {
+    /*
+            var novoJogo = 0;
+    
+            if (jogo[0][0] == 1) {
+    
+                if ((jogo[0][1] == 1) && (jogo[0][2] == 1)) {
+                    console.log('leu a variavel');
+                    alert('O ' + primeiroJogador + ' venceu');
+                    novoJogo = prompt('Deseja jogar novamente? (S/N)');
+                    if (novoJogo == 'S' || novoJogo == 's') {
+                        limpaMatriz(jogo);
+                        criaJogo();
+                        qtdeVitoriasPrimeiroJog = qtdeVitoriasPrimeiroJog + 1;
+                    }
+    */
+
+
 </script>
