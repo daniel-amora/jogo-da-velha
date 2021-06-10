@@ -1,0 +1,315 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo da Velha/Tic Tac Toe: Lógica de Programação | Unifor 2018.1</title>
+</head>
+
+<body>
+    <h1> Universidade de Fortaleza | CCT </h1>
+    Jogo da Velha
+    <hr>
+    <canvas id="tela" width="600" height="400"></canvas>
+    <P>Desenvolvedor</p>
+    <p>Daniel Amora</p>
+    <P>
+       
+</body>
+
+</html>
+<script>
+    var primeiroJogador = prompt('Digite o nome do primeiro jogador');
+    var segundoJogador = prompt('Digite o nome do segundo jogador');
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    //fundo branco
+    pincel.fillStyle = 'white';
+    pincel.fillRect(0, 0, 600, 300);
+
+    pincel.fillStyle = 'lightgrey';
+    pincel.fillRect(0, 320, 600, 80);
+    pincel.fillStroke = "black";
+    pincel.strokeRect(0, 320, 600, 80);
+
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(350, 0, 250, 300);
+    pincel.fillStroke = "black";
+    pincel.strokeRect(350, 0, 250, 300);
+    pincel.fill();
+
+    pincel.font = "12px Arial";
+    pincel.fillStyle = "black";
+    pincel.fillText('Placar: ', 20, 340);
+
+    var jogo =
+        [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0],
+        ];
+
+    console.log(jogo);
+    console.table(jogo);
+
+  function desenhaQuadrado(x, y) {
+        pincel.fillStyle = "lightgrey";
+        pincel.fillRect(x, y, 100, 100);
+        pincel.fillStroke = "red";
+        pincel.strokeRect(x, y, 100, 100);
+    }
+
+  function criaJogo() {
+
+        var y = 0;
+        var x = 0;
+
+        for (var i = 1; i <= 3; i++) {
+            desenhaQuadrado(x, y);
+            for (var j = 1; j < 3; j++) {
+                y = y + 100;
+                desenhaQuadrado(x, y);
+            }
+            x = x + 100;
+            y = 0;
+        }
+    }
+    function limpaMatriz(matriz) {
+
+        var linha = 0;
+        var coluna = 0;
+
+        for (linha = 0; linha <= 2; linha++) {
+            for (coluna = 0; coluna < 2; coluna++) {
+                matriz[linha][coluna] = 0;
+            }
+            matriz[linha][coluna] = 0;
+        }
+        console.table(jogo);
+    }
+
+    function verificaPosicao(x, y) {
+        if (x <= 300 && y <= 300) {
+            coluna = parseInt(x / 100);
+            linha = parseInt(y / 100);
+
+            console.log("Clicou na linha " + linha + ", coluna " + coluna);
+        }
+    }
+ function desenhaBola(x, y, cor, tamanho) {
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.arc(x, y, tamanho, 0, 2 * 3.14);
+        pincel.fill();
+    }
+
+    var circuloExecutado = false;
+
+    function desenhaCirculo(x, y) {
+
+        if (x <= 300 && y <= 300) {
+
+
+            var circuloExecutado = false;
+            var coluna = parseInt(x / 100);
+            var linha = parseInt(y / 100);
+
+            if (linha == 0) {
+                y = 50;
+                if (coluna == 0) {
+                    x = 50;
+                } else if (coluna == 1) {
+                    x = 150;
+                } else {
+                    x = 250;
+                }
+            } else if (linha == 1) {
+                y = 150;
+                if (coluna == 0) {
+                    x = 50;
+                } else if (coluna == 1) {
+                    x = 150;
+                } else {
+                    x = 250;
+                }
+            } else {
+                y = 250;
+                if (coluna == 0) {
+                    x = 50;
+                } else if (coluna == 1) {
+                    x = 150;
+                } else {
+                    x = 250;
+                }
+            }
+ desenhaBola(x, y, 'blue', 40);
+            desenhaBola(x, y, 'lightgrey', 35);
+
+        }
+
+        pincel.fillStyle = "lightgrey";
+        pincel.fillRect(350, 0, 250, 300);
+        pincel.fillStroke = "black";
+        pincel.strokeRect(350, 0, 250, 300);
+        pincel.fill();
+
+        pincel.font = "12px Arial";
+        pincel.fillStyle = "blue";
+        pincel.fillText('O ' + primeiroJogador + ' jogou, ', 420, 20);
+        pincel.fillStyle = "red";
+        pincel.fillText('Agora é a vez de ' + segundoJogador, 420, 40);
+
+        jogo[linha][coluna] = 1;
+        circuloExecutado = true;
+        console.table(jogo);
+    }
+
+    var xisExecutado = false;
+
+    function desenhaXis(x, y) {
+        if (x <= 300 && y <= 300) {
+
+            coluna = parseInt(x / 100);
+            linha = parseInt(y / 100);
+
+            if (linha == 0) {
+                y = 80;
+                if (coluna == 0) {
+                    x = 20;
+                } else if (coluna == 1) {
+                    x = 120;
+                } else {
+                    x = 220
+                }
+            } else if (linha == 1) {
+                y = 180;
+                if (coluna == 0) {
+                    x = 20;
+                } else if (coluna == 1) {
+                    x = 120;
+                } else {
+                    x = 220;
+                }
+            } else {
+                y = 280;
+                if (coluna == 0) {
+                    x = 20;
+                } else if (coluna == 1) {
+                    x = 120;
+                } else {
+                    x = 220;
+                }
+            }
+
+            pincel.font = "80px Arial";
+            pincel.fillStyle = "red";
+            pincel.fillText('X', x, y);
+
+        }
+
+        pincel.fillStyle = "lightgrey";
+        pincel.fillRect(350, 0, 250, 300);
+        pincel.fillStroke = "black";
+        pincel.strokeRect(350, 0, 250, 300);
+        pincel.fill();
+
+        pincel.font = "12px Arial";
+        pincel.fillStyle = "red";
+        pincel.fillText('O ' + segundoJogador + ' jogou, ', 420, 20);
+        pincel.fillStyle = "blue";
+        pincel.fillText('Agora é a vez de ' + primeiroJogador, 420, 40);
+
+        jogo[linha][coluna] = 2;
+        xisExecutado = true;
+        console.table(jogo);
+    }
+
+    var qtdeVitoriasPrimeiroJog = 0;
+    var qtdeVitoriasSegundoJog = 0;
+
+    function verificaJogada(matriz) {
+
+        for (var i = 0; i <= 2; i++) {
+            if (matriz[i][0] == matriz[i][1] && matriz[i][1] == matriz[i][2]) {
+                return matriz[i][0];
+                
+            }
+            if (matriz[0][i] == matriz[1][i] && matriz[1][i] == matriz[2][i]) { 
+                return matriz[i][1];
+                console.log(matriz)
+            }
+             if (matriz[0][i] == matriz[1][i] && matriz[1][i] == matriz[2][i]) { 
+                return matriz[i][2];
+                console.log(matriz)
+             }
+        }
+        return -1;
+    }
+
+
+    verificaJogada(jogo);
+
+    //function verificaJogada(jogo) {
+    /*
+            var novoJogo = 0;
+    
+            if (jogo[0][0] == 1) {
+    
+                if ((jogo[0][1] == 1) && (jogo[0][2] == 1)) {
+                    console.log('leu a variavel');
+                    alert('O ' + primeiroJogador + ' venceu');
+                    novoJogo = prompt('Deseja jogar novamente? (S/N)');
+                    if (novoJogo == 'S' || novoJogo == 's') {
+                        limpaMatriz(jogo);
+                        criaJogo();
+                        qtdeVitoriasPrimeiroJog = qtdeVitoriasPrimeiroJog + 1;
+                    }
+    */
+   criaJogo();
+    var turnoCirculo = true;
+
+    tela.onclick = function (evento) {
+
+        coluna = parseInt(x / 100);
+        linha = parseInt(y / 100);
+
+        var x = evento.pageX - tela.offsetLeft;
+        var y = evento.pageY - tela.offsetTop;
+
+
+        if (turnoCirculo) {
+            desenhaCirculo(x, y);
+            if(verificaJogada(jogo) == 1){
+                console.log('Circulo venceu');
+            }        
+            turnoCirculo = false;
+        } else {
+            desenhaXis(x, y);
+            if(verificaJogada(jogo) == 2) {
+                console.log('Xis venceu');
+            }         
+            turnoCirculo = true;
+        }
+        verificaPosicao(x, y);
+
+        console.log("posição do clique : " + x + ", " + y);
+
+        pincel.fillStyle = 'lightgrey';
+        pincel.fillRect(0, 320, 600, 80);
+        pincel.fillStroke = "black";
+        pincel.strokeRect(0, 320, 600, 80);
+
+        pincel.font = "12px Arial";
+        pincel.fillStyle = "black";
+        pincel.fillText('Placar: ', 20, 340);
+
+        pincel.font = "12px Arial";
+        pincel.fillStyle = "blue";
+        pincel.fillText('Vitorias de ' + primeiroJogador + ' : ' + qtdeVitoriasPrimeiroJog, 80, 340);
+        pincel.font = "12px Arial";
+        pincel.fillStyle = "red";
+        pincel.fillText('Vitorias de ' + segundoJogador + ' : ' + qtdeVitoriasSegundoJog, 80, 360);
+    };
+
+</script>
