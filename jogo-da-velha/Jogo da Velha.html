@@ -75,5 +75,26 @@
             y = 0;
         }
     }
+    function limpaMatriz(matriz) {
 
+        var linha = 0;
+        var coluna = 0;
+
+        for (linha = 0; linha <= 2; linha++) {
+            for (coluna = 0; coluna < 2; coluna++) {
+                matriz[linha][coluna] = 0;
+            }
+            matriz[linha][coluna] = 0;
+        }
+        console.table(jogo);
+    }
+
+    function verificaPosicao(x, y) {
+        if (x <= 300 && y <= 300) {
+            coluna = parseInt(x / 100);
+            linha = parseInt(y / 100);
+
+            console.log("Clicou na linha " + linha + ", coluna " + coluna);
+        }
+    }
 </script>
